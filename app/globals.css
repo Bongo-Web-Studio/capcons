@@ -1,26 +1,57 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ========== Font Faces ========== */
+@font-face {
+  font-family: "InstrumentSerif";
+  src: url("/InstrumentSerif-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@font-face {
+  font-family: "SFPRODISPLAYMEDIUM";
+  src: url("/SFPRODISPLAYMEDIUM.OTF") format("opentype");
+  font-weight: 500;
+  font-style: normal;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@font-face {
+  font-family: "SFPRODISPLAYREGULAR";
+  src: url("/SFPRODISPLAYREGULAR.OTF") format("opentype");
+  font-weight: 400;
+  font-style: normal;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ========== Global Font ========== */
+html, body {
+  font-family: "SFPRODISPLAYREGULAR", sans-serif;
 }
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); } /* duplicated content -> move half width */
+}
+
+/* marquee track style — applied via className "marquee-track" */
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 3rem; /* tailwind gap-12 equivalent but in CSS so animation spans continuous width nicely */
+  width: max-content;
+  animation: marquee-left 20s linear infinite;
+}
+
+/* responsive speed / gap adjustments */
+@media (max-width: 1024px) {
+  .marquee-track { gap: 2rem; animation-duration: 18s; }
+  .marquee-item img { max-height: 52px; }
+}
+
+@media (max-width: 640px) {
+  .marquee-track { gap: 1.25rem; animation-duration: 14s; }
+  .marquee-item img { max-height: 40px; }
+}
+
+/* optional: pause on hover (uncomment if you want) */
+/*
+.marquee-track:hover { animation-play-state: paused; }
+*/
