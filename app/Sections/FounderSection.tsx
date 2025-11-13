@@ -1,11 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
-
-// Pixel-focused FounderSection component using Tailwind CSS + Framer Motion
-// - Place any real images in your public/images folder and replace the URLs below
-// - This file is self-contained and ready to paste into a Next.js / Create React App project
+import { motion, Variants } from "framer-motion";
 
 export default function FounderSection({
   founderImage = "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1000&q=80",
@@ -13,21 +9,34 @@ export default function FounderSection({
   avatar2 = "https://images.unsplash.com/photo-1544006659-f0b21884ce1d?auto=format&fit=crop&w=200&q=80",
   avatar3 = "https://images.unsplash.com/photo-1545996104-9f3e6d245a8f?auto=format&fit=crop&w=200&q=80",
 }: any) {
-  const container = {
+  const container: Variants = {
     hidden: {},
     show: {
       transition: { staggerChildren: 0.12 },
     },
   };
 
-  const slideInLeft = {
+  // use a numeric cubic-bezier easing array instead of a string
+  const easeOutCubicBezier = [0.22, 1, 0.36, 1];
+
+  const slideInLeft: Variants = {
     hidden: { opacity: 0, x: -40, scale: 0.98 },
-    show: { opacity: 1, x: 0, scale: 1, transition: { duration: 0.6, ease: "easeOut" } },
+    show: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      transition: { duration: 0.6, ease: easeOutCubicBezier as any },
+    },
   };
 
-  const slideInRight = {
+  const slideInRight: Variants = {
     hidden: { opacity: 0, x: 40, scale: 0.98 },
-    show: { opacity: 1, x: 0, scale: 1, transition: { duration: 0.6, ease: "easeOut" } },
+    show: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      transition: { duration: 0.6, ease: easeOutCubicBezier as any },
+    },
   };
 
   return (

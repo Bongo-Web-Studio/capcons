@@ -1,15 +1,16 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
-// CustomerSection.jsx
-// Pixel-accurate Tailwind + Framer Motion component based on the provided image.
-// - Place avatar images in /public/images/avatars/avatar1.png, avatar2.png, avatar3.png
-// - Install framer-motion: npm i framer-motion
-// - Tailwind must be set up in your project
+type Testimonial = {
+  id: number;
+  name: string;
+  text: string;
+  avatar: string;
+};
 
-const testimonials = [
+const testimonials: Testimonial[] = [
   {
     id: 1,
     name: "Ava",
@@ -33,14 +34,14 @@ const testimonials = [
   },
 ];
 
-const floatVariants = {
-  animate: (i) => ({
+const floatVariants: Variants = {
+  animate: (i: number | undefined = 0) => ({
     x: i % 2 === 0 ? [0, 12, 0, -12, 0] : [0, -12, 0, 12, 0],
-    transition: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: i * 0.25 },
+    transition: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: (i ?? 0) * 0.25 },
   }),
 };
 
-export default function CustomerSection() {
+export default function CustomerSection(): React.ReactElement {
   return (
     <section className="bg-white py-16">
       <div className="max-w-7xl mx-auto px-6">
@@ -51,16 +52,16 @@ export default function CustomerSection() {
           transition={{ duration: 0.6 }}
           className="text-center text-3xl md:text-4xl font-semibold text-gray-900"
         >
-          See what our{' '}
+          See what our{" "}
           <span className="relative inline-block">
-            <span className="relative z-10"> 
+            <span className="relative z-10">
               <span className="px-2">Customers</span>
             </span>
             {/* neon highlight */}
             <span className="absolute left-0 right-0 top-1/2 -translate-y-1/2 mx-auto w-max rounded-md -z-10">
               <span className="block w-full h-8 md:h-10 rounded-md bg-[#eaff00] opacity-30 blur-sm" />
             </span>
-          </span>{' '}
+          </span>{" "}
           are saying?
         </motion.h2>
 

@@ -1,22 +1,21 @@
-"use client"
-
+"use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
-// ProPlan.tsx
-// - TailwindCSS + Framer Motion
-// - Drop this component into a React/Next.js app that has Tailwind configured
-// - Install framer-motion: `npm i framer-motion`
-
-const container = {
+const container: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.12 } },
 };
 
-const cardVariant = {
+const cardVariant: Variants = {
   hidden: { opacity: 0, y: 18, scale: 0.98 },
-  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.2, 0.8, 0.2, 1] } },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.6, ease: [0.2, 0.8, 0.2, 1] as any }, // <-- cast fixes TS error
+  },
 };
 
 export default function ProPlan() {
@@ -49,7 +48,6 @@ export default function ProPlan() {
             whileHover={{ translateY: -6, boxShadow: "0 22px 40px rgba(18,24,38,0.06)" }}
             className="relative w-72 min-h-[360px] rounded-[28px] bg-white border border-gray-100 overflow-hidden flex-shrink-0"
           >
-            {/* soft purple wash */}
             <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-purple-50 to-transparent opacity-90" />
 
             <div className="p-8 z-10 relative flex flex-col h-full">
@@ -85,7 +83,6 @@ export default function ProPlan() {
               </div>
 
               <div className="mt-8 flex-1 flex items-end justify-center">
-                {/* organic mountain wave */}
                 <svg width="360" height="170" viewBox="0 0 360 170" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <defs>
                     <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
@@ -96,7 +93,6 @@ export default function ProPlan() {
                   <path d="M0 110 C70 20 150 120 200 90 C260 50 340 80 360 92 L360 170 L0 170 Z" fill="url(#g1)" />
                 </svg>
 
-                {/* purple dot */}
                 <div className="absolute left-1/2 transform -translate-x-1/2 top-36">
                   <div className="w-3.5 h-3.5 rounded-full bg-violet-500 shadow-lg" />
                 </div>
